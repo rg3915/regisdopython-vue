@@ -9,7 +9,7 @@
                 <router-link
                     :to="{ name: 'user-todo', params: { id: user.id }}"
                 >
-                    {{ user.name }}
+                    {{ user | fullName }}
                 </router-link>
             </div>
         </div>
@@ -24,13 +24,17 @@ export default {
             users: [],
         };
     },
-
     mounted() {
-        fetch('http://127.0.0.1:8000/api/users')
+        fetch('http://localhost:8000/api/v1/core/users')
             .then(response => response.json())
             .then((res) => {
-                this.users = res.data;
+                this.users = res;
             });
     },
+    filters: {
+        fullName(user) {
+            return user.first_name + ' ' + user.last_name
+        }
+    }
 }
 </script>
