@@ -9,7 +9,7 @@
                 <router-link
                     :to="{ name: 'user-todo', params: { id: user.id }}"
                 >
-                    {{ user | fullName }}
+                    {{ user.name }}
                 </router-link>
             </div>
         </div>
@@ -28,13 +28,8 @@ export default {
         fetch('http://localhost:8000/api/v1/core/users')
             .then(response => response.json())
             .then((res) => {
-                this.users = res;
+                this.users = res; // .data foi removido
             });
-    },
-    filters: {
-        fullName(user) {
-            return user.first_name + ' ' + user.last_name
-        }
     }
 }
 </script>

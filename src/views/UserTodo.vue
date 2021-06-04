@@ -52,7 +52,7 @@ export default {
         const userId = this.$route.params.id;
         fetch(`http://localhost:8000/api/v1/core/users/${userId}`)
             .then(response => response.json())
-            .then(res => this.user = res);
+            .then(res => this.user = res); // .data foi removido
     },
 
 };
