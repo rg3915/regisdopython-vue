@@ -9,7 +9,7 @@
                 <router-link
                     :to="{ name: 'user-todo', params: { id: user.id }}"
                 >
-                    {{ user.name }}
+                    {{ user | fullName }}
                 </router-link>
             </div>
         </div>
@@ -30,6 +30,11 @@ export default {
             .then((res) => {
                 this.users = res; // .data foi removido
             });
+    },
+    filters: {
+        fullName(user) {
+            return user.first_name + ' ' + user.last_name
+        }
     }
 }
 </script>
